@@ -14,21 +14,21 @@ public class IntegerStack implements Stack {
 	}
 	
 	@Override
-	public int length() {	// stackÀÇ Å©±â ¹İÈ¯
+	public int length() {	// stackì˜ í¬ê¸° ë°˜í™˜
 		return stack.length;
 	}
 
 	@Override
-	public Object pop() {	// »èÁ¦
+	public Object pop() {	// ì‚­ì œ
 		if (top == -1)
-			return "½ºÅÃÀÌ °ø¹é»óÅÂ ÀÔ´Ï´Ù.";
+			return "ìŠ¤íƒì´ ê³µë°±ìƒíƒœ ì…ë‹ˆë‹¤.";
 		else return stack[top--];
 	}
 
 	@Override
-	public boolean push(Object ob) {	// »ğÀÔ
-		if (top == stack.length)
-			return false;	// ½ºÅÃ Æ÷È­
+	public boolean push(Object ob) {	// ì‚½ì…
+		if (top == stack.length-1)
+			return false;	// ìŠ¤íƒ í¬í™”
 		else {
 			stack[++top] = (int) ob;
 			return true;
