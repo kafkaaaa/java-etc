@@ -1,0 +1,147 @@
+// Web Crawling Test
+
+package CVE;
+
+import java.io.IOException;
+import java.util.Iterator;
+
+// JSoup : Java HTML Parser			// jsoup-1.13.1.jar
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class test {
+
+	private static String targetUrl = "https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=windows";
+		
+	public static void main(String[] args) {
+		
+		System.out.println("---- Windows Vulnerability List on CVE ----" + "\n");
+	
+		try {
+			// HTML 가져오기
+			Document doc = Jsoup.connect(targetUrl).get();
+			Elements tbody = doc.select("tbody").eq(2);
+			
+			Iterator<Element> contents = tbody.select("tr").iterator();
+			while (contents.hasNext()) {
+				Element tmp = contents.next();
+				
+				String name = tmp.select("a").text();
+				String desc = tmp.select("td").eq(1).text();
+				
+				System.out.println(name + "\t" + desc);
+				System.out.println();
+			}
+				
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("------ End of List ------");
+		
+		pause();	// 콘솔창 중지. 키 입력시 종료
+	}
+	
+	public static void pause( ) {	// 콘솔창 중지시키기 위해 만듦
+		try {
+			System.in.read();
+		} catch (IOException e) { }
+	}
+	
+}
+
+
+// test_1
+//			Elements list = doc.select("tbody").eq(2);
+//			
+//			Iterator<Element> it = list.select("tr").iterator();
+//			
+//			while (it.hasNext()) {
+//				String name = it.next().select("a").text();
+//				String desc = it.next().select("td").eq(1).text();
+//				
+//				System.out.println(name + "\t" + desc);
+//				System.out.print("\n");
+//			}
+			
+		
+			
+//			Iterator<Element> it_name = tbody.select("a").iterator();
+//			Iterator<Element> contents = tbody.select("td").iterator();
+//			
+//			while (contents.hasNext()) {
+//				System.out.println(contents.next().text());
+//				System.out.println();
+//			}
+			
+	
+			
+			// 최근 성공
+//			Iterator<Element> contents = tbody.select("tr").iterator();
+//			while (contents.hasNext()) {
+//				String name = contents.next().select("td").eq(0).select("a").text();
+//				String desc = contents.next().select("td").eq(1).text();
+//				
+//				System.out.println(name + "\t" + desc);
+//				System.out.println();
+//			}
+			
+			
+			
+//Elements element = doc.select("tbody");
+//
+//Iterator<Element> it1 = element.select("a").iterator();
+//Iterator<Element> it2 = element.select("td").eq(1).iterator();
+//
+//while (it1.hasNext()) {
+//	System.out.println(it1.next().text() + "\t" + it2.next().text());
+//}
+
+//for (Element e : element) {
+//	System.out.println(e);
+//}
+		
+		
+//		String name = doc.select("a").text();
+//		String description = doc.select("td").eq(1).text();
+//		
+//		System.out.println(name);
+//		System.out.println(description);
+		
+		
+		// id = TableWithRules 인 항목을 가져온다
+//		Elements name = doc.select("#TableWithRules td").eq(0);		// 이름 name
+//		Elements des = doc.select("#TableWithRules td").eq(1);		// 설명 description
+
+//		for (Element e : name) {
+//			System.out.println("NAME : " + e.text());
+//		}
+//		
+//		for (Element e : des) {
+//			System.out.println("Description : " + e.text() + "\n");
+//		}
+		
+		
+//		Elements element = doc.select("#TableWithRules");
+//
+//		for (Element e : element.select("tr")) {
+//			System.out.println(e.text());
+//		}
+		
+//		for (Element e : des.select("tr")) {
+//			System.out.println(e.text());
+//		}
+		
+		
+		
+//		Elements contents = doc.select("#TableWithRules td");
+//		
+//		for (Element e : contents) {
+//			String name = e.text();
+//			System.out.println(e);
+//		}
+//		String name = contents.text();
+		
+//		System.out.println(name);
